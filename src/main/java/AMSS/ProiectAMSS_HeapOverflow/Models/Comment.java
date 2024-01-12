@@ -10,10 +10,14 @@ public class Comment {
 
     private String accountName;
     private String content;
-    private Date datePosted;
+    private String datePosted;
 
-    public Comment(){
-
+    public Comment(int id,int questionId, String accountName, String content, String datePosted){
+        this.id = id;
+        this.questionId = questionId;
+        this.accountName = accountName;
+        this.content = content;
+        this.datePosted = datePosted;
     }
 
     public int getCommentId(){ return id;}
@@ -28,6 +32,6 @@ public class Comment {
     public String getContent(){ return content;}
     public void setContent(String content) {this.content = content;}
 
-    public Date getDatePosted(){ return datePosted;}
-    public void setDatePosted(Date date){this.datePosted = date;}
+    public String getDatePosted(){ return datePosted;}
+    public void setDatePosted(String date){this.datePosted = date;}
 }

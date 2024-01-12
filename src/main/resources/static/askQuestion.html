@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ask a question</title>
+</head>
+<body>
+<div>
+    <form id="askQuestion" method="post">
+        <label>Question title</label>
+        <input type="text" id="questionTitle"> <br>
+        <label>Content</label>
+        <input type="text" id="questionContent"> <br>
+        <input type="submit" id="submitButton" value="Submit">
+    </form>
+    <script type="text/javascript">
+                        document.getElementById('askQuestion').onsubmit = function() {
+                            window.location = "/questions/new/" + document.getElementById('questionTitle').value + "/" + document.getElementById('questionContent').value;
+                            return false;
+                        }
+    </script>
+</div>
+</body>
+</html>

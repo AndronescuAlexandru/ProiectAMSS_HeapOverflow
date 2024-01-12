@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home HeapOverflow</title>
@@ -83,15 +84,27 @@ button.accept-policy {
                 <a href="index.html">
                     <button>Home</button>
                 </a>
-                <form class="search-container">
-                    <input type="text" id = "searchBar" name="searchBar" placeholder="Search...">
-                    <input type="submit" value="Submit">
+                <form id = "searchQuestions" class="search-container" method="get">
+                    <input type="search" id = "searchBar" name="searchBar" placeholder="Search...">
+                    <button>Submit</button>
                 </form>
+                <script type="text/javascript">
+                        document.getElementById('searchQuestions').onsubmit = function() {
+                            window.location = "/questions/byTitle/" + document.getElementById('searchBar').value;
+                            return false;
+                        }
+            </script>
                 <a>
                     <button>Profile</button>
                 </a>
                 <a>
                     <button>Notifications</button>
+                </a>
+                <a href = "/questions/list">
+                    <button>Questions</button>
+                </a>
+                <a href = "askQuestion.html">
+                    <button>Ask Question</button>
                 </a>
             </div>
         </nav>

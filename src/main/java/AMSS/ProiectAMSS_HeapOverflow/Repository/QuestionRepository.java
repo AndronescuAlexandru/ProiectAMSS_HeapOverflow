@@ -1,45 +1,66 @@
 package AMSS.ProiectAMSS_HeapOverflow.Repository;
 
 import AMSS.ProiectAMSS_HeapOverflow.ExceptionHandling.QuestionNotFoundExceptionHandler;
+import AMSS.ProiectAMSS_HeapOverflow.Models.Comment;
 import AMSS.ProiectAMSS_HeapOverflow.Models.Question;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class QuestionRepository {
     private List<Question> questionList = new ArrayList<>();
 
     public QuestionRepository(){
-        Question question1 = new Question(1, "1/1/2024","How to create files in C++?", "How can I make files in my C++ program?",
+        Comment c = new Comment(0,1,"Maria",
+                "Use #include <fstream> header and use fstream file to create a file similar to how you would create a variable"
+                ,"2/1/2024");
+        Question question1 = new Question(1, "1/1/2024","How to create files in C++", "How can I make files in my C++ program?",
                 "Alex");
-        Question question2 = new Question(2, "21/5/2023","How to generate random numbers in Java?",
+        Question question2 = new Question(2, "21/5/2023","How to generate random numbers in Java",
                 "How can I generate random int, double numbers in my Java program?",
                 "NewUser12345");
+        question1.addComment(c);
         questionList.add(question1);
         questionList.add(question2);
 
     }
 
-    public Question addQuestion(Question question){
-        //int generatedId =  (int)(Math.random() * 100000)
-        //question.setQuestionId(generatedId);
-        questionList.add(question);
+    public String addQuestion(Question newQuestion){
+        questionList.add(newQuestion);
+
+        return "Added question with success!";
+    }
+
+    public Question addComment(Question question, Comment comment){
+        for (Question q:questionList) {
+            if(q.getQuestionId() == question.getQuestionId()){
+                q.addComment(comment);
+            }
+
+        }
         return question;
     }
 
     public Question findQuestionByTitle(String questionTitle){
-        return questionList.stream()
-                .filter(question -> question.getTitle().equalsIgnoreCase(questionTitle))
-                .findFirst()
-                .orElseThrow(() -> new QuestionNotFoundExceptionHandler("Question for the given title was not found"));
+        return questionList.stream().filter(question -> question.getTitle().equalsIgnoreCase(questionTitle))
+                .findFirst().orElseThrow(() -> new QuestionNotFoundExceptionHandler("Question for the given title was not found"));
+
+        /*Question newQuestion = questionList.stream().filter(question -> question.getTitle().equalsIgnoreCase(questionTitle))
+                .findFirst().orElseThrow(() -> new QuestionNotFoundExceptionHandler("Question for the given title was not found"));
+
+        return questionList.stream().filter(question -> question.getAccountName().equalsIgnoreCase(newQuestion.getAccountName()))
+                .findFirst().orElseThrow(() -> new QuestionNotFoundExceptionHandler("Question for the given title was not found"));*/
+    }
+
+    public Question findQuestionByAcc(String accName){
+        return questionList.stream().filter(question -> question.getAccountName().equalsIgnoreCase(accName))
+                .findFirst().orElseThrow(() -> new QuestionNotFoundExceptionHandler("Question for the given title was not found"));
     }
 
     public List<Question> findAllQuestions(){

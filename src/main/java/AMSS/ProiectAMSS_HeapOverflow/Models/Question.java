@@ -8,7 +8,6 @@ import java.util.List;
 public class Question {
 
     private int id;
-
     private String datePosted;
     private String title;
     private String content;
@@ -39,4 +38,5 @@ public class Question {
     public String getAccountName(){return this.accountName;}
     public void setAccountName(String newAccountName){this.accountName = newAccountName;}
 
+    public void addComment(Comment comment){ this.commentList.add(comment);}
 }
