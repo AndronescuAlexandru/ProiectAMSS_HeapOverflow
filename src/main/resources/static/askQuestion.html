@@ -3,8 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Ask a question</title>
+    <link rel="stylesheet" href="Styles/navigationBarStyle.css">
 </head>
 <body>
+<div>
+    <header>
+        <div>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-top border-bottom box-shadow mb-3 nav">
+                <div class="container">
+                    <a href="index.html">
+                        <button>Home</button>
+                    </a>
+                    <form action="questionSearchResultPage.html" id = "searchQuestions" class="search-container" method="GET">
+                        <input type="search" id = "searchBar" name="searchBar" placeholder="Search...">
+                        <input type="submit" value="Submit" />
+                    </form>
+                    <a>
+                        <button>Profile</button>
+                    </a>
+                    <a>
+                        <button>Notifications</button>
+                    </a>
+                    <a href = "askQuestion.html">
+                        <button>Ask Question</button>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+</div>
+
+<br>
+<br>
+<br>
+
 <div>
     <form id="askQuestion" method="post">
         <label>Question title</label>
@@ -13,12 +45,11 @@
         <input type="text" id="questionContent"> <br>
         <input type="submit" id="submitButton" value="Submit">
     </form>
-    <script type="text/javascript">
-                        document.getElementById('askQuestion').onsubmit = function() {
-                            window.location = "/questions/new/" + document.getElementById('questionTitle').value + "/" + document.getElementById('questionContent').value;
-                            return false;
-                        }
-    </script>
+    <script>
+    document.getElementById('searchQuestions').onsubmit = function() {
+   window.location = 'http://localhost:8080/questions/new/' + document.getElementById('questionTitle').value + '/' + document.getElementById('questionContent').value;;
+   return false;
+}</script>
 </div>
 </body>
 </html>

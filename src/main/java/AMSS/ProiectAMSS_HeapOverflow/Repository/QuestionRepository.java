@@ -47,20 +47,27 @@ public class QuestionRepository {
         return question;
     }
 
-    public Question findQuestionByTitle(String questionTitle){
-        return questionList.stream().filter(question -> question.getTitle().equalsIgnoreCase(questionTitle))
-                .findFirst().orElseThrow(() -> new QuestionNotFoundExceptionHandler("Question for the given title was not found"));
+    public List<Question> findQuestionById(int questionId){
+        List<Question> questions = new ArrayList<>();
+        for(Question q : questionList){
+            if(q.getQuestionId() == questionId){
+                questions.add(q);
+            }
+        }
+        return questions;
+    }
 
-        /*Question newQuestion = questionList.stream().filter(question -> question.getTitle().equalsIgnoreCase(questionTitle))
+    public List<Question> findQuestionByTitle(String questionTitle){
+        List<Question> questions = new ArrayList<>();
+        Question q1 = questionList.stream().filter(question -> question.getTitle().equalsIgnoreCase(questionTitle))
                 .findFirst().orElseThrow(() -> new QuestionNotFoundExceptionHandler("Question for the given title was not found"));
-
-        return questionList.stream().filter(question -> question.getAccountName().equalsIgnoreCase(newQuestion.getAccountName()))
-                .findFirst().orElseThrow(() -> new QuestionNotFoundExceptionHandler("Question for the given title was not found"));*/
+        questions.add(q1);
+        return questions;
     }
 
     public Question findQuestionByAcc(String accName){
         return questionList.stream().filter(question -> question.getAccountName().equalsIgnoreCase(accName))
-                .findFirst().orElseThrow(() -> new QuestionNotFoundExceptionHandler("Question for the given title was not found"));
+                .findFirst().orElseThrow(() -> new QuestionNotFoundExceptionHandler("Question for the given account name was not found"));
     }
 
     public List<Question> findAllQuestions(){

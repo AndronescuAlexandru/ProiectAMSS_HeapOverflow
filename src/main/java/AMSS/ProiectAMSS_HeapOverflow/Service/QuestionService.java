@@ -33,7 +33,11 @@ public class QuestionService {
         return questionRepository.addComment(question, comment);
     }
 
-    public Question findQuestionByTitle(String questionTitle){
+    public List<Question> findQuestionById(int questionId){
+        return questionRepository.findQuestionById(questionId);
+    }
+
+    public List<Question> findQuestionByTitle(String questionTitle){
         return questionRepository.findQuestionByTitle(questionTitle);
     }
 

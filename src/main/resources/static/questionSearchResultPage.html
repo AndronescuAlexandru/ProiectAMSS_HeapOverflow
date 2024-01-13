@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <title>Questions</title>
     <link rel="stylesheet" href="Styles/navigationBarStyle.css">
     <link rel="stylesheet" href="Styles/questionStyle.css">
-    <title>Home HeapOverflow</title>
 </head>
-
 <body>
 <div>
     <header>
@@ -17,7 +15,7 @@
                     <a href="index.html">
                         <button>Home</button>
                     </a>
-                    <form action="questionPage.html" id = "searchQuestions" class="search-container" method="GET">
+                    <form action="questionSearchResultPage.html" id = "searchQuestions" class="search-container" method="GET">
                         <input type="search" id = "searchBar" name="searchBar" placeholder="Search...">
                         <input type="submit" value="Submit" />
                     </form>
@@ -38,10 +36,11 @@
 
 <br>
 <br>
-<h2>All Questions</h2>
 
-<div id="container">
-</div>
-<script src="Scripts/retrieveAllQuestionsData.js"></script>
+<h2 id="Question">Questions</h2>
+
+<div id="container"></div>
+
+<script src="Scripts/retrieveSearchedQuestionData.js"></script>
 </body>
 </html>

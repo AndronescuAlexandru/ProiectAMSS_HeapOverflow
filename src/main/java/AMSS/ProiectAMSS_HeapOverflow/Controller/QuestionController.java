@@ -26,8 +26,12 @@ public class QuestionController {
         return ResponseEntity.ok().body(questionService.findAllQuestions());
     }
 
+    @GetMapping("/byId/{questionId}")
+    public ResponseEntity<List<Question>> questionByTitle(@PathVariable int questionId) {
+        return ResponseEntity.ok().body(questionService.findQuestionById(questionId));
+    }
     @GetMapping("/byTitle/{questionTitle}")
-    public ResponseEntity<?> questionByTitle(@PathVariable String questionTitle) {
+    public ResponseEntity<List<Question>> questionByTitle(@PathVariable String questionTitle) {
         return ResponseEntity.ok().body(questionService.findQuestionByTitle(questionTitle));
     }
 
