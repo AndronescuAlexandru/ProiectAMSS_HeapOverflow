@@ -1,4 +1,3 @@
-// 1) Fetch data from remote API
 async function getQuestions() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -29,8 +28,13 @@ getQuestions().then(data => {
   const title = document.createElement('h2');
   const content = document.createElement('p');
 
+  const divCommentTag = document.createElement('div');
+
   data.forEach(question => {
     title.innerHTML = question.title;
+
+    const commentContainer = document.getElementById('commentContainer');
+    const container = document.getElementById('questionContainer');
 
     const dateTimePosted = document.createElement('dt');
     dateTimePosted.innerHTML = `Date posted: ${question.datePosted}`;
@@ -42,10 +46,31 @@ getQuestions().then(data => {
 
     dl.append(...[dateTimePosted, author]);
 
-  });
+    container.appendChild(title);
+    container.appendChild(dl);
+    container.appendChild(content);
 
-  const container = document.getElementById('container');
-  container.appendChild(title);
-  container.appendChild(dl);
-  container.appendChild(content);
+    question.commentList.forEach(comment =>{
+        const dlCommentTag = document.createElement('dl');
+        const commentDateTimePosted = document.createElement('dt');
+        commentDateTimePosted.innerHTML = `Date posted: ${comment.datePosted}`;
+
+        const commentAuthor = document.createElement('dt');
+        commentAuthor.innerHTML = `Author: ${comment.accountName}`;
+
+        dlCommentTag.append(...[commentDateTimePosted, commentAuthor]);
+
+        const commentContent = document.createElement('p');
+        commentContent.innerHTML = comment.content;
+
+        const lineBreak = document.createElement('br');
+
+        divCommentTag.appendChild(dlCommentTag);
+        divCommentTag.appendChild(commentContent);
+
+        commentContainer.appendChild(divCommentTag);
+        commentContent.appendChild(lineBreak);
+    })
+
+  });
 });

@@ -38,9 +38,23 @@
 <br>
 
 <div class="card">
-    <div id="container" class="containter">
+    <div id="questionContainer" class="containter">
+    </div>
+</div>
+
+<h3>Comments</h3> <br>
+
+<form id="commentTextArea">
+    <textarea id="addCommentContent" style="height:100px; width:350px;"></textarea>
+</form> <br>
+
+<button onclick="addComment()">Add comment</button>
+
+<div class="card">
+    <div id="commentContainer" class="containter">
     </div>
 </div>
 <script src="Scripts/retrieveQuestionData.js"></script>
+<script src="Scripts/postComment.js"></script>
 </body>
 </html>

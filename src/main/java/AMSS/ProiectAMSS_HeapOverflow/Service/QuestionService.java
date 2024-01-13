@@ -26,13 +26,6 @@ public class QuestionService {
         return questionRepository.addQuestion(newQuestion);
     }
 
-    public Question addComment(Question question, Comment comment){
-        if(Objects.isNull(comment.getContent())){
-            throw new RuntimeException("Comment content cannot be null");
-        }
-        return questionRepository.addComment(question, comment);
-    }
-
     public List<Question> findQuestionById(int questionId){
         return questionRepository.findQuestionById(questionId);
     }
@@ -47,5 +40,13 @@ public class QuestionService {
 
     public List<Question> findAllQuestions(){
         return questionRepository.findAllQuestions();
+    }
+
+    public String addComment(int questionId, String commentContent){
+        return questionRepository.addComment(questionId, commentContent);
+    }
+
+    public List<Comment> findAllComments(int questionId){
+        return questionRepository.findAllComments(questionId);
     }
 }

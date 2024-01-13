@@ -39,4 +39,5 @@ public class Question {
     public void setAccountName(String newAccountName){this.accountName = newAccountName;}
 
     public void addComment(Comment comment){ this.commentList.add(comment);}
+    public List<Comment> getCommentList(){return this.commentList;}
 }

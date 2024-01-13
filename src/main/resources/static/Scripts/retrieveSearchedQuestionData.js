@@ -45,16 +45,13 @@
 
      const dd = document.createElement('dd');
 
-     const id = document.createElement('dd');
-     id.innerHTML = `Id: ${question.questionId}`;
-
      const content = document.createElement('dd');
      content.innerHTML = `Date posted: ${question.datePosted}`;
 
      const author = document.createElement('dd');
      author.innerHTML = `Author: ${question.accountName}`;
 
-     dd.append(...[id,content, author]);
+     dd.append(...[content, author]);
 
      dt.appendChild(dd);
      dlTag.appendChild(dt);

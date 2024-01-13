@@ -1,5 +1,6 @@
 package AMSS.ProiectAMSS_HeapOverflow.Controller;
 
+import AMSS.ProiectAMSS_HeapOverflow.Models.Comment;
 import AMSS.ProiectAMSS_HeapOverflow.Models.Question;
 import AMSS.ProiectAMSS_HeapOverflow.Service.QuestionService;
 import org.springframework.http.ResponseEntity;
@@ -22,16 +23,15 @@ public class QuestionController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Question>> questionList() {
+    public ResponseEntity<List<Question>> listAllQuestions() {
         return ResponseEntity.ok().body(questionService.findAllQuestions());
     }
-
     @GetMapping("/byId/{questionId}")
-    public ResponseEntity<List<Question>> questionByTitle(@PathVariable int questionId) {
+    public ResponseEntity<List<Question>> findQuestionById(@PathVariable int questionId) {
         return ResponseEntity.ok().body(questionService.findQuestionById(questionId));
     }
     @GetMapping("/byTitle/{questionTitle}")
-    public ResponseEntity<List<Question>> questionByTitle(@PathVariable String questionTitle) {
+    public ResponseEntity<List<Question>> findQuestionByTitle(@PathVariable String questionTitle) {
         return ResponseEntity.ok().body(questionService.findQuestionByTitle(questionTitle));
     }
 
@@ -40,8 +40,18 @@ public class QuestionController {
         return ResponseEntity.ok().body(questionService.findQuestionByAcc(accName));
     }
 
+    @GetMapping("/?id={questionId}/listComments")
+    public ResponseEntity<List<Comment>> listAllComments(@PathVariable int questionId) {
+        return ResponseEntity.ok().body(questionService.findAllComments(questionId));
+    }
+
     @PostMapping("/new/{questionTitle}/{questionContent}")
     public ResponseEntity<?> newQuestion( @PathVariable String questionTitle, @PathVariable String questionContent) {
         return ResponseEntity.ok().body(questionService.addQuestion(questionTitle, questionContent));
+    }
+
+    @PostMapping("/addComment/{questionId}/{commentContent}")
+    public ResponseEntity<?> addComment( @PathVariable int questionId, @PathVariable String commentContent) {
+        return ResponseEntity.ok().body(questionService.addComment(questionId, commentContent));
     }
 }
