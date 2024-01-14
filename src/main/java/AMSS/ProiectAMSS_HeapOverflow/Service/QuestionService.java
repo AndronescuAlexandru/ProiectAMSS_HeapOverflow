@@ -18,11 +18,10 @@ public class QuestionService {
         this.questionRepository = questionRepository;
     }
 
-    public String addQuestion(String title, String content){
-        int generatedId =  (int)(Math.random() * 100000);
+    public String addQuestion(int questionId,String title, String content){
         Date dateTime = new Date();
 
-        Question newQuestion = new Question(generatedId, dateTime.toString(), title, content, "Guest" + generatedId);
+        Question newQuestion = new Question(questionId, dateTime.toString(), title, content, "Guest" + questionId);
         return questionRepository.addQuestion(newQuestion);
     }
 

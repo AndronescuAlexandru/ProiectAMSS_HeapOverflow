@@ -1,11 +1,20 @@
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: rgb(240,240,240);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
   transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
+  border-radius: 10px;
+  margin-right: 300px;
+}
+
+.cardSecond {
+  background-color: rgb(203,230,243);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+  transition: 0.3s;
+  border-radius: 10px;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.7);
 }
 
 .container {

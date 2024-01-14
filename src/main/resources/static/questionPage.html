@@ -3,58 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Question</title>
-    <link rel="stylesheet" href="Styles/navigationBarStyle.css">
+    <link rel="stylesheet" href="Styles/navBarStyle.css">
     <link rel="stylesheet" href="Styles/questionStyle.css">
 </head>
 <body>
 <div>
+    <div class="header">
+        <h1>HeapOverflow</h1>
+    </div>
     <header>
         <div>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-top border-bottom box-shadow mb-3 nav">
+            <nav class="topnav">
                 <div class="container">
-                    <a href="index.html">
-                        <button>Home</button>
-                    </a>
+                    <a href="index.html">Home</a>
                     <form action="questionSearchResultPage.html" id = "searchQuestions" class="search-container" method="GET">
                         <input type="search" id = "searchBar" name="searchBar" placeholder="Search...">
                         <input type="submit" value="Submit" />
                     </form>
-                    <a>
-                        <button>Profile</button>
-                    </a>
-                    <a>
-                        <button>Notifications</button>
-                    </a>
-                    <a href = "askQuestion.html">
-                        <button>Ask Question</button>
-                    </a>
+                    <a href="#">Profile</a>
+                    <a href="#">Notifications</a>
+                    <a href = "askQuestion.html">Ask Question</a>
                 </div>
             </nav>
         </div>
     </header>
 </div>
 
-<br>
-<br>
-
 <div class="card">
-    <div id="questionContainer" class="containter">
+    <div id="questionContainer" class="container">
     </div>
 </div>
 
-<h3>Comments</h3> <br>
+<h3 style="padding: 5px 5px;">Comments</h3>
 
-<form id="commentTextArea">
+<form id="commentTextArea" style="padding: 5px 10px;">
     <textarea id="addCommentContent" style="height:100px; width:350px;"></textarea>
 </form> <br>
+<button id="submitCommentButton" onclick="addComment()" style="padding: 5px 10px;">Add comment</button>
 
-<button onclick="addComment()">Add comment</button>
-
-<div class="card">
-    <div id="commentContainer" class="containter">
+<div class="card" style="padding: 5px 5px;">
+    <div id="commentContainer" class="container">
     </div>
 </div>
 <script src="Scripts/retrieveQuestionData.js"></script>
-<script src="Scripts/postComment.js"></script>
 </body>
 </html>

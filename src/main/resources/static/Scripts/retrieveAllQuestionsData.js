@@ -1,4 +1,3 @@
-// 1) Fetch data from remote API
 async function getQuestions() {
   try {
     const response = await fetch(

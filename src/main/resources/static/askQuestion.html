@@ -3,53 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Ask a question</title>
-    <link rel="stylesheet" href="Styles/navigationBarStyle.css">
+    <link rel="stylesheet" href="Styles/navBarStyle.css">
+    <link rel="stylesheet" href="Styles/askQuestionPageStyle.css">
 </head>
 <body>
 <div>
+    <div class="header">
+        <h1>HeapOverflow</h1>
+    </div>
     <header>
         <div>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-top border-bottom box-shadow mb-3 nav">
+            <nav class="topnav">
                 <div class="container">
-                    <a href="index.html">
-                        <button>Home</button>
-                    </a>
+                    <a href="index.html">Home</a>
                     <form action="questionSearchResultPage.html" id = "searchQuestions" class="search-container" method="GET">
                         <input type="search" id = "searchBar" name="searchBar" placeholder="Search...">
                         <input type="submit" value="Submit" />
                     </form>
-                    <a>
-                        <button>Profile</button>
-                    </a>
-                    <a>
-                        <button>Notifications</button>
-                    </a>
-                    <a href = "askQuestion.html">
-                        <button>Ask Question</button>
-                    </a>
+                    <a href="#">Profile</a>
+                    <a href="#">Notifications</a>
+                    <a href = "askQuestion.html">Ask Question</a>
                 </div>
             </nav>
         </div>
     </header>
 </div>
 
-<br>
-<br>
-<br>
+<h2 style="padding: 5px 20px;">Ask a public question</h2>
+
+<div class="card">
+    <div class="container">
+        <b style="font-size: 22px;">Writing a good question</b>
+        <p>You’re ready to ask a programming-related question and this form will help guide you through the process.</p>
+        <div>
+            <b>Steps</b>
+            <ul>
+                <li>Summarize your problem in a one-line title.</li>
+                <li>Describe your problem in more detail.</li>
+                <li>Describe what you tried and what you expected to happen.</li>
+                <li>Review your question and post it to the site.</li>
+            </ul>
+        </div>
+    </div>
+</div> <br>
 
 <div>
-    <form id="askQuestion" method="post">
+    <form id="askQuestion" method="post" style="padding: 10px 10px;">
         <label>Question title</label><br>
-        <input type="text" id="questionTitle"> <br>
+        <input id="questionTitle" type="text"> <br>
         <label>Content</label><br>
         <textarea id="questionContent" style="height:100px; width:350px;"></textarea> <br>
-        <input type="submit" id="submitButton" value="Submit">
     </form>
-    <script>
-    document.getElementById('searchQuestions').onsubmit = function() {
-   window.location = 'http://localhost:8080/questions/new/' + document.getElementById('questionTitle').value + '/' + document.getElementById('questionContent').value;;
-   return false;
-}</script>
+    <button onclick="postQuestion()" style="padding: 10px 10px;">Ask question</button>
+    <script src="Scripts/askQuestion.js"></script>
 </div>
 </body>
 </html>

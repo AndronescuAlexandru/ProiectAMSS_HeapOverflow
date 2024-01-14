@@ -1,0 +1,13 @@
+.card {
+  background-color: rgb(203,230,243);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+  transition: 0.3s;
+  border-radius: 10px;
+  padding: 5px 5px;
+  margin-left: 10px;
+  margin-right: 300px;
+}
+
+.container {
+  padding: 2px 16px;
+}

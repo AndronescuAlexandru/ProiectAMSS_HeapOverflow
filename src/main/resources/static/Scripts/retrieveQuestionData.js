@@ -1,6 +1,6 @@
 async function getQuestions() {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
   try {
     const response = await fetch(
       'http://localhost:8080/questions/byId/' + urlParams.get('id'),
@@ -32,6 +32,7 @@ getQuestions().then(data => {
 
   data.forEach(question => {
     title.innerHTML = question.title;
+    title.style.fontSize = '30px';
 
     const commentContainer = document.getElementById('commentContainer');
     const container = document.getElementById('questionContainer');
@@ -74,3 +75,21 @@ getQuestions().then(data => {
 
   });
 });
+
+function addComment() {
+       const queryString = window.location.search;
+       const urlParams = new URLSearchParams(queryString);
+       const urlString = 'http://localhost:8080/questions/addComment/' + urlParams.get('id') + '/' + document.getElementById('addCommentContent').value;
+       try {
+           const response = fetch(
+             urlString,
+             {
+               method: 'POST',
+             },
+           );
+         } catch (error) {
+           console.log(error);
+         }
+       window.location = 'http://localhost:8080/questionPage.html?id=' + urlParams.get('id');
+       return false;
+}

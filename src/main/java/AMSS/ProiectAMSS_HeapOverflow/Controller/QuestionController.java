@@ -40,14 +40,14 @@ public class QuestionController {
         return ResponseEntity.ok().body(questionService.findQuestionByAcc(accName));
     }
 
-    @GetMapping("/?id={questionId}/listComments")
+    @GetMapping("/{questionId}/listComments")
     public ResponseEntity<List<Comment>> listAllComments(@PathVariable int questionId) {
         return ResponseEntity.ok().body(questionService.findAllComments(questionId));
     }
 
-    @PostMapping("/new/{questionTitle}/{questionContent}")
-    public ResponseEntity<?> newQuestion( @PathVariable String questionTitle, @PathVariable String questionContent) {
-        return ResponseEntity.ok().body(questionService.addQuestion(questionTitle, questionContent));
+    @PostMapping("/new/{questionId}/{questionTitle}/{questionContent}")
+    public ResponseEntity<?> newQuestion( @PathVariable int questionId,@PathVariable String questionTitle, @PathVariable String questionContent) {
+        return ResponseEntity.ok().body(questionService.addQuestion(questionId, questionTitle, questionContent));
     }
 
     @PostMapping("/addComment/{questionId}/{commentContent}")
