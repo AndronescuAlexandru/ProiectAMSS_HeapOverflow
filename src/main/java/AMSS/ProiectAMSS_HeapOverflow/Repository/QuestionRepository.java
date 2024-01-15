@@ -5,6 +5,7 @@ import AMSS.ProiectAMSS_HeapOverflow.Models.Comment;
 import AMSS.ProiectAMSS_HeapOverflow.Models.Notification;
 import AMSS.ProiectAMSS_HeapOverflow.Models.Question;
 
+import AMSS.ProiectAMSS_HeapOverflow.Service.NotificationService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
@@ -17,10 +18,14 @@ import java.util.stream.Collectors;
 
 @Repository
 public class QuestionRepository {
+
+    public final NotificationService notificationService;
     private List<Question> questionList = new ArrayList<>();
     String username;
 
-    public QuestionRepository(){
+    public QuestionRepository(NotificationService notificationService){
+        this.notificationService = notificationService;
+
         Comment c = new Comment(0,1,"Maria",
                 "Use #include <fstream> header and use fstream file to create a file similar to how you would create a variable"
                 ,"2/1/2024");
@@ -83,8 +88,6 @@ public class QuestionRepository {
         Comment newComment = new Comment(generatedId, questionId, authentication.getName(), commentContent, dateTime.toString());
 
         for (Question q:questionList) {
-
-
             if(q.getQuestionId() == questionId){
                 q.addComment(newComment);
                 username = q.getAccountName();
@@ -92,9 +95,8 @@ public class QuestionRepository {
 
         }
         int generated_notif_Id =  (int)(Math.random() * 100000);
-        Notification notification = new Notification(generated_notif_Id, username, questionId);
-        NotificationRepository notificationRepository = new NotificationRepository();
-        notificationRepository.addNotification(notification);
+
+        notificationService.addNotification(generated_notif_Id,username,questionId);
         return "Comment added!";
     }
 

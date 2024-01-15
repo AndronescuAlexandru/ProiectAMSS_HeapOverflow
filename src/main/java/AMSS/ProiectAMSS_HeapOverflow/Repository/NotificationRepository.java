@@ -15,16 +15,12 @@ public class NotificationRepository {
     private List<Notification> notificationList = new ArrayList<>();
 
     public NotificationRepository() {
-        Notification notification = new Notification(1, "v", 1);
-        notificationList.add(notification);
     }
     public List<Notification> findAllNotifications() {
-
         return notificationList;
     }
     public String addNotification(Notification notification){
         notificationList.add(notification);
         return "notification added";
-
     }
 }

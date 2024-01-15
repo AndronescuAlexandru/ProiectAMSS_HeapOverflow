@@ -17,8 +17,7 @@ public class NotificationService {
     }
 
     public String addNotification(int id_notif, String username, int id_question){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Notification newNotification = new Notification(id_notif, authentication.getName(),id_question);
+        Notification newNotification = new Notification(id_notif, username,id_question);
         return notificationRepository.addNotification(newNotification);
     }
 

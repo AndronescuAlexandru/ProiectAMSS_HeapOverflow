@@ -3,6 +3,7 @@ package AMSS.ProiectAMSS_HeapOverflow.Service;
 import AMSS.ProiectAMSS_HeapOverflow.ExceptionHandling.QuestionNotFoundExceptionHandler;
 import AMSS.ProiectAMSS_HeapOverflow.Models.Comment;
 import AMSS.ProiectAMSS_HeapOverflow.Models.Question;
+import AMSS.ProiectAMSS_HeapOverflow.Repository.NotificationRepository;
 import AMSS.ProiectAMSS_HeapOverflow.Repository.QuestionRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +17,8 @@ import java.util.Objects;
 public class QuestionService {
     private final QuestionRepository questionRepository;
 
-    public QuestionService(QuestionRepository questionRepository) {
+    public QuestionService(QuestionRepository questionRepository, NotificationRepository notificationRepository) {
+
         this.questionRepository = questionRepository;
     }
 
