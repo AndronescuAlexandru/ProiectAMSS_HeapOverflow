@@ -33,7 +33,7 @@ getNotifications().then(data => {
     dt.classList.add("container");
 
     const anchor = document.createElement('a');
-    anchor.href = 'questionPage.html?id=' + notification.questionId;
+    anchor.href = 'questionPage.html?id=' + notification.id_question;
     anchor.innerHTML = 'You have a new notification!';
     dt.appendChild(anchor);
 

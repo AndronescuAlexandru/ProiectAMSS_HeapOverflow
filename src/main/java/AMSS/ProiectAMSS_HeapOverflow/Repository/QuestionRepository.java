@@ -2,6 +2,7 @@ package AMSS.ProiectAMSS_HeapOverflow.Repository;
 
 import AMSS.ProiectAMSS_HeapOverflow.ExceptionHandling.QuestionNotFoundExceptionHandler;
 import AMSS.ProiectAMSS_HeapOverflow.Models.Comment;
+import AMSS.ProiectAMSS_HeapOverflow.Models.Notification;
 import AMSS.ProiectAMSS_HeapOverflow.Models.Question;
 
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @Repository
 public class QuestionRepository {
     private List<Question> questionList = new ArrayList<>();
+    String username;
 
     public QuestionRepository(){
         Comment c = new Comment(0,1,"Maria",
@@ -45,6 +47,7 @@ public class QuestionRepository {
 
         return "Added question with success!";
     }
+
 
     public List<Question> findQuestionById(int questionId){
         List<Question> questions = new ArrayList<>();
@@ -78,12 +81,20 @@ public class QuestionRepository {
         Date dateTime = new Date();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Comment newComment = new Comment(generatedId, questionId, authentication.getName(), commentContent, dateTime.toString());
+
         for (Question q:questionList) {
+
+
             if(q.getQuestionId() == questionId){
                 q.addComment(newComment);
+                username = q.getAccountName();
             }
 
         }
+        int generated_notif_Id =  (int)(Math.random() * 100000);
+        Notification notification = new Notification(generated_notif_Id, username, questionId);
+        NotificationRepository notificationRepository = new NotificationRepository();
+        notificationRepository.addNotification(notification);
         return "Comment added!";
     }
 
