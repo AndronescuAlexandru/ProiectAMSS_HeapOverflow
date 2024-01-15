@@ -4,6 +4,8 @@ import AMSS.ProiectAMSS_HeapOverflow.ExceptionHandling.QuestionNotFoundException
 import AMSS.ProiectAMSS_HeapOverflow.Models.Comment;
 import AMSS.ProiectAMSS_HeapOverflow.Models.Question;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import java.io.UnsupportedEncodingException;
@@ -74,7 +76,8 @@ public class QuestionRepository {
     public String  addComment(int questionId, String commentContent){
         int generatedId =  (int)(Math.random() * 100000);
         Date dateTime = new Date();
-        Comment newComment = new Comment(generatedId, questionId, "Guest" + generatedId, commentContent, dateTime.toString());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Comment newComment = new Comment(generatedId, questionId, authentication.getName(), commentContent, dateTime.toString());
         for (Question q:questionList) {
             if(q.getQuestionId() == questionId){
                 q.addComment(newComment);

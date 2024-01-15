@@ -4,6 +4,8 @@ import AMSS.ProiectAMSS_HeapOverflow.ExceptionHandling.QuestionNotFoundException
 import AMSS.ProiectAMSS_HeapOverflow.Models.Comment;
 import AMSS.ProiectAMSS_HeapOverflow.Models.Question;
 import AMSS.ProiectAMSS_HeapOverflow.Repository.QuestionRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -20,8 +22,8 @@ public class QuestionService {
 
     public String addQuestion(int questionId,String title, String content){
         Date dateTime = new Date();
-
-        Question newQuestion = new Question(questionId, dateTime.toString(), title, content, "Guest" + questionId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Question newQuestion = new Question(questionId, dateTime.toString(), title, content, authentication.getName());
         return questionRepository.addQuestion(newQuestion);
     }
 
