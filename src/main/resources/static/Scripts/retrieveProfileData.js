@@ -31,3 +31,24 @@ getProfile().then(data => {
     document.getElementById('engagement-score').innerText = data.engagementScore;
     document.getElementById('highest-achieved-badge').innerText = data.highestAchievedBadge;
 });
+
+function changeDescription() {
+    const queryString = window.location.search;
+    const input = document.getElementById('addDescriptionContent').value;
+    const urlString = 'http://localhost:8080/profile/description/' + input;
+    try {
+        const data = fetch(
+          urlString,
+          {
+            method: 'POST',
+          },
+        );
+
+        console.log(data);
+
+        document.getElementById('description').innerText = input;
+      } catch (error) {
+        console.log(error);
+      }
+    return false;
+}
