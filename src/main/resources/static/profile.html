@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Question</title>
+    <link rel="stylesheet" href="Styles/navBarStyle.css">
+    <link rel="stylesheet" href="Styles/questionStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div>
+    <div class="header">
+        <h1><a href="index.html" style="color: #FFFFFF; text-decoration: none;">HeapOverflow</a></h1>
+    </div>
+    <header>
+        <div class="topnav">
+            <nav>
+                <div class="container">
+                    <a href="index.html">Home</a>
+                    <div class="search-container">
+                        <form action="questionSearchResultPage.html" id = "searchQuestions" class="search-container" method="GET">
+                            <input type="search" id = "searchBar" name="searchBar" placeholder="Search...">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                    <a href="profile.html">Profile</a>
+                    <a href="notifications.html">Notifications</a>
+                    <a href = "askQuestion.html">Ask Question</a>
+                    <a href = "logout">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+</div>
+
+<div class="card">
+    <div id="questionContainer" class="container">
+    </div>
+</div>
+
+<h3 style="padding: 5px 5px;">Comments</h3>
+
+<form id="commentTextArea" style="padding: 5px 10px;">
+    <textarea id="addCommentContent" style="height:100px; width:350px;"></textarea>
+</form> <br>
+<button id="submitCommentButton" onclick="addComment()" style="padding: 5px 10px;">Add comment</button>
+
+<div class="card" style="padding: 5px 5px;">
+    <div id="commentContainer" class="container">
+    </div>
+</div>
+<script src="Scripts/retrieveQuestionData.js"></script>
+</body>
+</html>
