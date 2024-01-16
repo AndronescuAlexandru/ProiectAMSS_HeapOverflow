@@ -23,7 +23,7 @@ getQuestions().then(data => {
   console.log(data);
 
   const dl = document.createElement('dl');
-  dl.classList.add("container");
+  dl.classList.add("containerProfile");
 
   data.forEach(question => {
     const dlTag = document.createElement('dl');
